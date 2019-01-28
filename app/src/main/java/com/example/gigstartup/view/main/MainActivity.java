@@ -18,7 +18,7 @@ public class MainActivity extends BaseActivity<MainActivityViewModel, ActivityMa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setViewModel(getViewModel());
     }
 
     @Override
