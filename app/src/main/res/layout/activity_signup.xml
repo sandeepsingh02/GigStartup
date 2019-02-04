@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.gigstartup.viewModel.SignupViewModel"></variable>
+        <import type="android.view.View"/>
+        <variable name="activity" type="com.example.gigstartup.view.account.signup.SignupActivity"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@drawable/ic_login_bg"
+    >
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardLogin"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginLeft="20sp"
+            android:layout_marginRight="20sp"
+            android:elevation="10sp"
+            android:translationZ="20sp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30sp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_up"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/preference"
+                                android:textSize="15sp"
+                                app:fontFamily="@font/helvetica_neue" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10sp"
+                                android:background="@drawable/light_gray_rounded_bg">
+                                <Spinner
+                                    android:layout_width="match_parent"
+                                    android:gravity="center"
+                                    android:paddingTop="10dp"
+                                    android:paddingLeft="10sp"
+                                    android:paddingRight="10sp"
+                                    android:paddingBottom="10dp"
+                                    app:custom_entries="@{viewModel.spinnerData}"
+                                    android:onItemSelected="@{(parent,view,pos,id) -> viewModel.getPreferenceSpinner(parent,view,pos,id)}"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvViewName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/name"
+                                android:textSize="15sp"
+                                app:fontFamily="@font/helvetica_neue" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10sp"
+                                android:background="@drawable/light_gray_rounded_bg">
+
+                                <EditText
+                                    android:id="@+id/etName"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10sp"
+                                    android:layout_marginRight="10sp"
+                                    android:background="@null"
+                                    android:capitalize="words"
+                                    android:ems="10"
+                                    android:hint="@string/enter_here"
+                                    android:textColor="@color/black"
+                                    android:imeOptions="actionNext"
+                                    android:maxLength="100"
+                                    android:maxLines="1"
+                                    android:text="@={viewModel.userName}"
+                                    android:singleLine="true"
+                                    android:padding="10sp"
+                                    app:fontFamily="@font/helvetica_neue" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp"
+                            android:visibility="@{viewModel.isWorkerSelected ? View.VISIBLE : View.GONE}"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/rate_hr"
+                                android:textSize="15sp"
+                                app:fontFamily="@font/helvetica_neue" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10sp"
+                                android:background="@drawable/light_gray_rounded_bg">
+
+                                <EditText
+                                    android:id="@+id/etRate"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10sp"
+                                    android:layout_marginRight="10sp"
+                                    android:background="@null"
+                                    android:capitalize="words"
+                                    android:ems="10"
+                                    android:hint="@string/enter_here"
+                                    android:text="@={viewModel.rate}"
+                                    android:textColor="@color/black"
+                                    android:imeOptions="actionNext"
+                                    android:maxLength="100"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:padding="10sp"
+                                    android:inputType="number"
+                                    app:fontFamily="@font/helvetica_neue" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp"
+                            android:visibility="@{viewModel.isWorkerSelected ? View.VISIBLE : View.GONE}"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/skills"
+                                android:textSize="15sp"
+                                app:fontFamily="@font/helvetica_neue" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10sp"
+                                android:background="@drawable/light_gray_rounded_bg">
+                                <Spinner
+                                    android:layout_width="match_parent"
+                                    android:gravity="center"
+                                    android:paddingTop="10dp"
+                                    android:paddingLeft="10sp"
+                                    android:paddingRight="10sp"
+                                    android:paddingBottom="10dp"
+                                    app:custom_entries="@{viewModel.springSkills}"
+                                    android:onItemSelected="@{(parent,view,pos,id) -> viewModel.getSkillSpinner(parent,view,pos,id)}"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/email_id"
+                                android:textSize="15sp"
+                                app:fontFamily="@font/helvetica_neue" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10sp"
+                                android:background="@drawable/light_gray_rounded_bg">
+
+                                <EditText
+                                    android:id="@+id/etEmail"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10sp"
+                                    android:layout_marginRight="10sp"
+                                    android:background="@null"
+                                    android:ems="10"
+                                    android:textColor="@color/black"
+                                    android:text="@={viewModel.emaildId}"
+                                    android:hint="@string/enter_here"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="textEmailAddress"
+                                    android:maxLength="250"
+                                    android:maxLines="1"
+                                    android:padding="10sp"
+                                    app:fontFamily="@font/helvetica_neue" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/mobile_number"
+                                android:textSize="15sp"
+                                app:fontFamily="@font/helvetica_neue" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:background="@drawable/light_gray_rounded_bg"
+                                android:layout_marginTop="10sp"
+                                android:layout_height="wrap_content">
+                                <EditText
+                                    android:id="@+id/etMobileNumber"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:padding="10sp"
+                                    android:textColor="@color/black"
+                                    android:background="@null"
+                                    android:maxLines="1"
+                                    android:maxLength="10"
+                                    android:imeOptions="actionDone"
+                                    android:layout_marginLeft="10sp"
+                                    android:text="@={viewModel.mobileNumber}"
+                                    android:layout_marginRight="10sp"
+                                    app:fontFamily="@font/helvetica_neue"
+                                    android:hint="@string/enter_here"
+                                    android:inputType="number"
+                                    />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="40sp"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                app:fontFamily="@font/helvetica_neue"
+                                android:text="@string/create_password"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:background="@drawable/light_gray_rounded_bg"
+                                android:layout_marginTop="10sp"
+                                android:layout_height="wrap_content">
+                                <EditText
+                                    android:id="@+id/etCreatePassword"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:padding="10sp"
+                                    android:maxLength="16"
+                                    android:maxLines="1"
+                                    android:background="@null"
+                                    android:text="@={viewModel.password}"
+                                    android:layout_marginLeft="10sp"
+                                    android:layout_marginRight="10sp"
+                                    app:fontFamily="@font/helvetica_neue"
+                                    android:hint="@string/enter_here"
+                                    android:inputType="textPassword"
+                                    />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="40sp"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                app:fontFamily="@font/helvetica_neue"
+                                android:text="@string/re_enter_password"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:background="@drawable/light_gray_rounded_bg"
+                                android:layout_marginTop="10sp"
+                                android:layout_height="wrap_content">
+                                <EditText
+                                    android:id="@+id/etReCreatePassword"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:ems="10"
+                                    android:padding="10sp"
+                                    android:maxLength="16"
+                                    android:maxLines="1"
+                                    android:background="@null"
+                                    android:layout_marginLeft="10sp"
+                                    android:text="@={viewModel.rePassword}"
+                                    android:layout_marginRight="10sp"
+                                    app:fontFamily="@font/helvetica_neue"
+                                    android:hint="@string/enter_here"
+                                    android:inputType="textPassword"
+                                    />
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10sp"
+                                android:layout_marginRight="10sp"
+                                android:text="@string/by_clicking_sign_in_you_agree_to_our"
+                                android:textSize="15sp"
+                                app:fontFamily="@font/helvetica_neue" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <CheckBox
+                                    android:id="@+id/ckTermsCondition"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10sp"
+                                    android:layout_marginRight="10sp"
+                                    android:background="@null"
+                                    android:ems="10"
+                                    android:imeOptions="actionDone"
+                                    android:padding="10sp"
+                                    android:text="@string/terms_conditions"
+                                    android:textColor="@color/colorPrimaryDark"
+                                    android:checked="@{viewModel.isCheckTandC}"
+                                    android:onCheckedChanged="@{(view, checked) -> viewModel.onItemChecked(view, checked)}"
+                                    android:theme="@style/checkBoxStyle"
+                                    app:fontFamily="@font/helvetica_neue"
+
+                                    />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="50sp"
+                            android:layout_marginBottom="5sp"
+                            android:layout_marginTop="20sp"
+                            app:cardBackgroundColor="@android:color/transparent"
+                            app:cardCornerRadius="25sp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50sp"
+                                android:background="@drawable/roundded_button_gradient"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                                android:transformPivotY="40sp">
+
+                                <Button
+                                    android:id="@+id/buttonSignUp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@null"
+                                    android:text="@string/sign_up"
+                                    android:onClick="@{() -> viewModel.signUpClick()}"
+                                    android:textAllCaps="true"
+                                    android:textColor="@color/white"
+                                    android:textSize="15sp"
+                                    app:fontFamily="@font/helvetica_neue" />
+                            </LinearLayout>
+                        </android.support.v7.widget.CardView>
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <LinearLayout
+            android:id="@+id/linearBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:onClick="@{()-> activity.onBackPressed()}"
+            app:layout_constraintBottom_toTopOf="@+id/cardLogin"
+            app:layout_constraintStart_toEndOf="@id/cardLogin"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="20sp">
+
+            <include layout="@layout/back_with_title_layout"></include>
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

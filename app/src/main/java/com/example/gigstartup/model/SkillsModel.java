@@ -1,4 +1,6 @@
 package com.example.gigstartup.model;
 
-public class DtoUserInfo {
+public class SkillsModel {
+
+
 }

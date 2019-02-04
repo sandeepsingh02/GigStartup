@@ -9,6 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.gigstartup.R;
 import com.example.gigstartup.utils.ActionBarUtils;
+import com.example.gigstartup.utils.Constants;
+import com.example.gigstartup.utils.SharedPref;
+import com.example.gigstartup.view.account.login.LoginActivity;
 import com.example.gigstartup.view.main.MainActivity;
 
 public class SpalshActivity extends AppCompatActivity {
@@ -21,8 +24,13 @@ public class SpalshActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         this.mContext=this;
         new Handler().postDelayed(() -> {
-            startActivity(new Intent(mContext, MainActivity.class));
-            finish();
+            if (SharedPref.read(Constants.IS_LOGIN, false)) {
+                startActivity(new Intent(mContext, MainActivity.class));
+                ActionBarUtils.finishActivity(this);
+            } else {
+                startActivity(new Intent(mContext, LoginActivity.class));
+                ActionBarUtils.finishActivity(this);
+            }
         },SPLASH_TIME_OUT);
     }
 }

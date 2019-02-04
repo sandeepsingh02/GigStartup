@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.gigstartup.viewModel.HomeViewModel"></variable>
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.home.HomeFragment">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/sf_ui_display_semibold"
+                    android:text="Are you not able to find \n Any workers?"
+                    android:textSize="28dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/helvetica_neue"
+                    android:text="No Problem !\n I Will help you out"
+                    android:textSize="21dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:text="Select skill of the worker"
+                        android:textSize="15sp"
+                        app:fontFamily="@font/helvetica_neue" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20sp"
+                        android:background="@drawable/light_gray_rounded_bg">
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:gravity="center"
+                            android:paddingTop="10dp"
+                            android:paddingLeft="10sp"
+                            android:paddingRight="10sp"
+                            android:textAlignment="center"
+                            android:paddingBottom="10dp"
+                            android:padding="20dp"
+                            app:custom_entries="@{viewModel.springSkills}"
+                            android:onItemSelected="@{(parent,view,pos,id) -> viewModel.getSkillSpinner(parent,view,pos,id)}"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    >
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_marginBottom="5sp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_marginRight="40dp"
+                        android:layout_marginTop="30sp"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        app:cardCornerRadius="25sp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50sp"
+                            android:background="@drawable/roundded_button_gradient"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            >
+
+                            <Button
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@null"
+                                android:text="@string/search"
+                                android:textAllCaps="false"
+                                android:onClick="@{() -> viewModel.searchWorker()}"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                app:fontFamily="@font/helvetica_neue" />
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </FrameLayout>
+</layout>
